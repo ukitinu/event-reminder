@@ -7,17 +7,27 @@ class Event:
         self.other = other
 
     def __str__(self):
-        main = f'{self.who}:\n\t{self.what}'
-        return f'{main}\n\t{self.other}' if self.other else main
+        return f'{self.who}; {self.what}; {self.other}'
 
     def __repr__(self):
         return f'Event({self.who}, {self.what}, {self.other})'
 
+    def __eq__(self, other):
+        if not isinstance(other, Event):
+            return False
+        return self.who == other.who and self.what == other.what and self.other == other.other
+
+    def to_text(self):
+        main = f'{self.who}:\n\t{self.what}'
+        return f'{main}\n\t{self.other}' if self.other else main
+
     @classmethod
     def from_string(cls, string: str):
         fields = [s.strip() for s in string.split(';') if s.strip()]
+
         if len(fields) != 2 and len(fields) != 3:
-            raise AttributeError(f'{string} format is not {cls.__STR_FORMAT}')
+            raise AttributeError(f'"{string}" format is not {cls.__STR_FORMAT}')
+
         who = fields[0].strip()
         what = fields[1].strip()
         other = fields[2].strip() if fields[2:] else ''
