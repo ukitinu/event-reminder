@@ -7,10 +7,10 @@ class Event:
         self.other = other
 
     def __str__(self):
-        return f'{self.who}; {self.what}; {self.other}'
+        return f'{self.who}; {self.what}; {self.other}' if self.other else f'{self.who}; {self.what}'
 
     def __repr__(self):
-        return f'Event({self.who}, {self.what}, {self.other})'
+        return f"Event('{self.who}', '{self.what}', '{self.other}')"
 
     def __eq__(self, other):
         if not isinstance(other, Event):
@@ -28,7 +28,7 @@ class Event:
         if len(fields) != 2 and len(fields) != 3:
             raise AttributeError(f'"{string}" format is not {cls.__STR_FORMAT}')
 
-        who = fields[0].strip()
-        what = fields[1].strip()
-        other = fields[2].strip() if fields[2:] else ''
+        who = fields[0]
+        what = fields[1]
+        other = fields[2] if fields[2:] else ''
         return cls(who, what, other)
