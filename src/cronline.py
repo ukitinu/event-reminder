@@ -2,6 +2,8 @@ from src.event import Event
 import re
 
 
+# TODO eq con controlli
+# TODO creazione con controlli, ovvero */1 == * e simili (modulo etc etc)
 class CronLine:
     __CRON_DAY_NUM = '(3[01]|[12][0-9]|[1-9])'
     __CRON_MONTH_NUM = '(1[0-2]|[1-9])'
@@ -17,13 +19,12 @@ class CronLine:
         return f'{self.day} {self.month} {self.weekday} {self.event}'
 
     def __repr__(self):
-        return f'CronLine({self.day}, {self.month}, {self.weekday}, {repr(self.event)})'
+        return f"CronLine('{self.day}', '{self.month}', '{self.weekday}', {repr(self.event)})"
 
     def __eq__(self, other):
         if not isinstance(other, CronLine):
             return False
-        is_weekday_equal = (self.weekday % 7) == (other.weekday % 7)
-        return self.day == other.day and self.month == other.month and is_weekday_equal and self.event == other.event
+        return self.day == other.day and self.month == other.month and self.weekday == other.weekday and self.event == other.event
 
     def is_today(self, day: int, month: int, weekday: int) -> bool:
         is_day = self.is_time('day', day)

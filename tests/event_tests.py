@@ -10,6 +10,7 @@ class EventTests(unittest.TestCase):
         e2 = Event("a", "b")
         e3 = Event("x", "y")
         e4 = Event("x", "y", '')
+        self.assertNotEqual(e1, 'Hello world')
         self.assertEqual(e3, e4)
         self.assertNotEqual(e1, e2)
         self.assertNotEqual(e1, e3)
