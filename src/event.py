@@ -17,12 +17,13 @@ class Event:
             return False
         return self.who == other.who and self.what == other.what and self.other == other.other
 
-    def to_text(self):
+    def to_text(self) -> str:
         main = f'{self.who}:\n\t{self.what}'
         return f'{main}\n\t{self.other}' if self.other else main
 
     @classmethod
     def from_string(cls, string: str):
+        string = ' '.join(string.split())
         fields = [s.strip() for s in string.split(';') if s.strip()]
 
         if len(fields) != 2 and len(fields) != 3:
