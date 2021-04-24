@@ -34,7 +34,7 @@ class EventTests(unittest.TestCase):
         self.assertEqual('a:\n\tb\n\tc', e1.to_text())
         self.assertEqual('a:\n\tb', e2.to_text())
 
-    def test_error_from_string(self):
+    def test_from_string_error(self):
         s_short = 'a'
         s_empty = 'a;  ;  '
         s_long = 'a; b; c; d'
