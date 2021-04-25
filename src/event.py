@@ -1,25 +1,25 @@
 class Event:
-    __STR_FORMAT = 'WHO; WHAT[; OTHER]'
+    __STR_FORMAT = 'TITLE; DESCRIPTION[; MORE]'
 
-    def __init__(self, who: str, what: str, other: str = ''):
-        self.who = who
-        self.what = what
-        self.other = other
+    def __init__(self, title: str, desc: str, more: str = ''):
+        self.title = title
+        self.desc = desc
+        self.more = more
 
     def __str__(self):
-        return f'{self.who}; {self.what}; {self.other}' if self.other else f'{self.who}; {self.what}'
+        return f'{self.title}; {self.desc}; {self.more}' if self.more else f'{self.title}; {self.desc}'
 
     def __repr__(self):
-        return f"Event('{self.who}', '{self.what}', '{self.other}')"
+        return f"Event('{self.title}', '{self.desc}', '{self.more}')"
 
     def __eq__(self, other):
         if not isinstance(other, Event):
             return False
-        return self.who == other.who and self.what == other.what and self.other == other.other
+        return self.title == other.title and self.desc == other.desc and self.more == other.more
 
     def to_text(self) -> str:
-        main = f'{self.who}:\n\t{self.what}'
-        return f'{main}\n\t{self.other}' if self.other else main
+        main = f'{self.title}:\n\t{self.desc}'
+        return f'{main}\n\t{self.more}' if self.more else main
 
     @classmethod
     def from_string(cls, string: str):
@@ -29,7 +29,7 @@ class Event:
         if len(fields) != 2 and len(fields) != 3:
             raise AttributeError(f'"{string}" format is not {cls.__STR_FORMAT}')
 
-        who = fields[0]
-        what = fields[1]
-        other = fields[2] if fields[2:] else ''
-        return cls(who, what, other)
+        title = fields[0]
+        desc = fields[1]
+        more = fields[2] if fields[2:] else ''
+        return cls(title, desc, more)
