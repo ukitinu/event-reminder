@@ -17,6 +17,9 @@ class Event:
             return False
         return self.title == other.title and self.desc == other.desc and self.more == other.more
 
+    def __hash__(self) -> int:
+        return hash((self.title, self.desc, self.more))
+
     def to_text(self) -> str:
         main = f'{self.title}:\n\t{self.desc}'
         return f'{main}\n\t{self.more}' if self.more else main
