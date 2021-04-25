@@ -30,18 +30,18 @@ class CronTime:
         return days and months and weekdays
 
     def is_time(self, day: int, month: int, weekday: int) -> bool:
-        is_day = day in self.__get_field_nums('day')
-        is_month = month in self.__get_field_nums('month')
-        is_weekday = weekday in self.__get_field_nums('weekday')
+        is_day = day in self.get_field_nums('day')
+        is_month = month in self.get_field_nums('month')
+        is_weekday = weekday in self.get_field_nums('weekday')
         return is_day and is_month and is_weekday
 
-    def __get_field_nums(self, attr: str) -> List[int]:
+    def get_field_nums(self, attr: str) -> List[int]:
         pieces = getattr(self, attr).split(',')
         times: List[int] = []
         for piece in pieces:
             if piece == '*':
                 return self.__RANGES[attr]
-            elif '-' in piece:
+            if '-' in piece:
                 start = int(piece.split('-')[0])
                 end = int(piece.split('-')[1])
                 times.extend(range(start, end + 1))
@@ -58,7 +58,7 @@ class CronTime:
     def __check_field_equality(self, other, attr: str) -> bool:
         if not isinstance(other, CronTime):
             return False
-        return collections.Counter(self.__get_field_nums(attr)) == collections.Counter(other.__get_field_nums(attr))
+        return collections.Counter(self.get_field_nums(attr)) == collections.Counter(other.get_field_nums(attr))
 
     @classmethod
     def from_string(cls, string: str):

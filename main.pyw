@@ -23,12 +23,12 @@ if __name__ == '__main__':
 
         data = reader.read_lines(DATA_FILE, day, month, weekday)
 
-        LOG.info(f'{today}: {len(data.events)} entries found')
+        LOG.info('%s: %d entries found', today, len(data.events))
 
         if data.errors:
-            LOG.warning(f'Bad lines: {data.errors}')
+            LOG.warning('Bad lines: %s', data.errors)
 
         if data.events:
             renderer.open_window(f'{day} {month}', data.events)
-    except Exception as e:
-        LOG.error(e)
+    except Exception as ex:
+        LOG.error(ex)

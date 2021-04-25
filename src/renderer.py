@@ -14,13 +14,13 @@ WINDOW.resizable(False, False)
 
 def open_window(title: str, entries: Set[Event]):
     WINDOW.title(title)
-    bg = BG_COLOUR
+    current_background = BG_COLOUR
     i = 1
     for entry in entries:
-        bg = BG_COLOUR_ALT if bg == BG_COLOUR else BG_COLOUR
+        current_background = BG_COLOUR_ALT if current_background == BG_COLOUR else BG_COLOUR
         text = ttk.Label(WINDOW,
                          text=f' {entry.to_text()}',
-                         background=bg,
+                         background=current_background,
                          foreground='white',
                          font=('Arial', 16))
         text.place()

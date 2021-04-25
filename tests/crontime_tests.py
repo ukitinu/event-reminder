@@ -44,9 +44,9 @@ class MyTestCase(unittest.TestCase):
         c3 = CronTime('*', '*/3', '*')
         c4 = CronTime('5', '5', '5')
         self.assertEqual("CronTime('2-5,*/10,3/10', '6', '*')", repr(c1))
-        self.assertEqual(f"CronTime('10', '*/4', '*')", repr(c2))
+        self.assertEqual("CronTime('10', '*/4', '*')", repr(c2))
         self.assertEqual("CronTime('*', '*/3', '*')", repr(c3))
-        self.assertEqual(f"CronTime('5', '5', '5')", repr(c4))
+        self.assertEqual("CronTime('5', '5', '5')", repr(c4))
 
     def test_is_time(self):
         c1 = CronTime('2-5,*/11,3/11', '1-3,6', '0-5')
