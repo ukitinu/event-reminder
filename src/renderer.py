@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from typing import List
+from typing import Set
 
 from src.event import Event
 
@@ -12,7 +12,7 @@ WINDOW.config(bg=BG_COLOUR)
 WINDOW.resizable(False, False)
 
 
-def open_window(title: str, entries: List[Event]):
+def open_window(title: str, entries: Set[Event]):
     WINDOW.title(title)
     bg = BG_COLOUR
     i = 1
