@@ -3,6 +3,7 @@ from src.event import Event
 
 
 class CronLine:
+    __COMMENT = '#'
 
     def __init__(self, cron: CronTime, event: Event):
         self.cron = cron
@@ -27,7 +28,14 @@ class CronLine:
 
     @classmethod
     def from_string(cls, string: str):
+        if cls.__COMMENT in string:
+            ignore_from = string.index(cls.__COMMENT)
+            string = string[:ignore_from]
+
         string = ' '.join(string.split())
+        if string == '':
+            return None
+
         fields = [s.strip() for s in string.split(sep=' ', maxsplit=3) if s.strip()]
 
         if len(fields) != 4:
