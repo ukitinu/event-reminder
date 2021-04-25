@@ -4,6 +4,7 @@ from datetime import date
 
 from src import renderer, reader
 
+# TODO provide basic file in project folder, or something like that
 DATA_FILE = 'C:\\Users\\User\\MAIN\\174517\\domestico\\ricorrenze.yml'
 LOG_FILE = 'event-reminder.log'
 LOG_FORMAT = '%(asctime)s - %(levelname)7s - %(filename)10s - %(message)s'
