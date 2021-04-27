@@ -11,6 +11,8 @@ def read_lines(file_path: str, day: int, month: int, weekday: int) -> ReadData:
     errors: Set[int] = set()
 
     if os.path.exists(file_path):
+        if os.path.islink(file_path):
+            file_path = os.readlink(file_path)
         with open(file_path, 'r') as file:
             line_num = 0
             for line in file:

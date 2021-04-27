@@ -4,8 +4,7 @@ from datetime import date
 
 from src import renderer, reader
 
-# TODO provide basic file in project folder, or something like that
-DATA_FILE = 'C:\\Users\\User\\MAIN\\174517\\domestico\\ricorrenze.yml'
+DATA_FILE = 'events.lnk'
 LOG_FILE = 'event-reminder.log'
 LOG_FORMAT = '%(asctime)s - %(levelname)7s - %(filename)10s - %(message)s'
 
@@ -22,7 +21,7 @@ if __name__ == '__main__':
         month = today.month
         weekday = today.weekday()
 
-        data = reader.read_lines(DATA_FILE, day, month, weekday)
+        data = reader.read_lines(os.path.join(os.path.dirname(__file__), DATA_FILE), day, month, weekday)
 
         LOG.info('%s: %d entries found', today, len(data.events))
 
