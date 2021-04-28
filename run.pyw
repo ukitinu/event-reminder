@@ -4,7 +4,7 @@ import configparser
 import sys
 from datetime import date
 
-from src import renderer, reader
+from eventreminder import reader, renderer
 
 LOG_FILE = 'event-reminder.log'
 LOG_FORMAT = '%(asctime)s - %(levelname)7s - %(message)s'
@@ -14,8 +14,6 @@ logging.basicConfig(filename=os.path.join(os.path.dirname(__file__), LOG_FILE),
                     level=logging.INFO)
 LOG = logging.getLogger()
 
-EVENT_FILE = ''
-LOG_DAY = False
 try:
     config_file = os.path.join(os.path.dirname(__file__), 'config.ini')
     if not os.path.exists(config_file):
@@ -36,22 +34,17 @@ except KeyError as ex:
     LOG.fatal("ini file: %s value not found", ex)
     sys.exit(1)
 
-if __name__ == '__main__':
-    try:
-        today = date.today()
-        day = today.day
-        month = today.month
-        weekday = today.weekday()
-
-        data = reader.read_lines(EVENT_FILE, day, month, weekday)
-
-        if LOG_DAY:
-            LOG.info('%s: %d events found', today, len(data.events))
-
-        if data.errors:
-            LOG.warning('Bad lines: %s', data.errors)
-
-        if data.events:
-            renderer.open_window(f'{day} {month}', data.events)
-    except Exception as ex:
-        LOG.error(ex)
+try:
+    today = date.today()
+    day = today.day
+    month = today.month
+    weekday = today.weekday()
+    data = reader.read_lines(EVENT_FILE, day, month, weekday)
+    if LOG_DAY:
+        LOG.info('%s: %d events found', today, len(data.events))
+    if data.errors:
+        LOG.warning('Bad lines: %s', data.errors)
+    if data.events:
+        renderer.open_window(f'{day} {month}', data.events)
+except Exception as ex:
+    LOG.error(ex)

@@ -1,12 +1,12 @@
 import os
 from typing import Set
 
-from src.cronline import CronLine
-from src.event import Event
-from src.read_data import ReadData
+from eventreminder.cronline import CronLine
+from eventreminder.event import Event
+from eventreminder.date_data import DateData
 
 
-def read_lines(file_path: str, day: int, month: int, weekday: int) -> ReadData:
+def read_lines(file_path: str, day: int, month: int, weekday: int) -> DateData:
     events: Set[Event] = set()
     errors: Set[int] = set()
 
@@ -24,6 +24,6 @@ def read_lines(file_path: str, day: int, month: int, weekday: int) -> ReadData:
                 except AttributeError:
                     errors.add(line_num)
 
-            return ReadData(events, errors)
+            return DateData(events, errors)
     else:
         raise FileNotFoundError(f'Data file not found: {file_path}')

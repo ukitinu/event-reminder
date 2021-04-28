@@ -1,5 +1,5 @@
-from src.crontime import CronTime
-from src.event import Event
+from eventreminder.crontime import CronTime
+from eventreminder.event import Event
 
 
 class CronLine:

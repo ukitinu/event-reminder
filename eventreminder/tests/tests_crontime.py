@@ -1,6 +1,6 @@
 import unittest
 
-from src.crontime import CronTime
+from eventreminder.crontime import CronTime
 
 
 class MyTestCase(unittest.TestCase):

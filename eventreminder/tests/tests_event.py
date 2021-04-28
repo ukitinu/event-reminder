@@ -1,6 +1,6 @@
 import unittest
 
-from src.event import Event
+from eventreminder.event import Event
 
 
 class EventTests(unittest.TestCase):

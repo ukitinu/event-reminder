@@ -2,8 +2,8 @@ import os
 import unittest
 from datetime import date
 
-from src import reader
-from src.event import Event
+from eventreminder import reader
+from eventreminder.event import Event
 
 TEST_FILE = os.path.join(os.path.dirname(__file__), 'cron_events_test')
 

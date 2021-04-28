@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from typing import Set
 
-from src.event import Event
+from eventreminder.event import Event
 
 BG_COLOUR = '#333333'
 BG_COLOUR_ALT = '#444444'
