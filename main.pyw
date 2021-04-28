@@ -26,7 +26,7 @@ try:
 
     EVENT_FILE = CFG['EVENT-REMINDER']['event-file']
     if '\\' not in EVENT_FILE and '/' not in EVENT_FILE:
-        event_file = os.path.join(os.path.dirname(__file__), EVENT_FILE)
+        EVENT_FILE = os.path.join(os.path.dirname(__file__), EVENT_FILE)
     if not os.path.exists(EVENT_FILE):
         LOG.fatal("ini file: event file %s not found", EVENT_FILE)
         sys.exit(1)
@@ -46,7 +46,7 @@ if __name__ == '__main__':
         data = reader.read_lines(EVENT_FILE, day, month, weekday)
 
         if LOG_DAY:
-            LOG.info('%s: %d entries found', today, len(data.events))
+            LOG.info('%s: %d events found', today, len(data.events))
 
         if data.errors:
             LOG.warning('Bad lines: %s', data.errors)
