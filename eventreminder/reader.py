@@ -3,10 +3,26 @@ from typing import Set
 
 from eventreminder.cronline import CronLine
 from eventreminder.event import Event
-from eventreminder.date_data import DateData
+
+
+class DateData:
+    """Utility data-holder class to return results and errors."""
+
+    def __init__(self, events: Set[Event], errors: Set[int]):
+        self.events = events
+        self.errors = errors
+
+    def __str__(self) -> str:
+        return f"DateData: {len(self.events)} events, {len(self.errors)} errors"
+
+    def __repr__(self) -> str:
+        return f"DateData({repr(self.events)}, {repr(self.errors)})"
 
 
 def read_lines(file_path: str, day: int, month: int, weekday: int) -> DateData:
+    """
+    Reads the input file line by line, collecting the events matching the given date and the errors found in the file.
+    """
     events: Set[Event] = set()
     errors: Set[int] = set()
 
