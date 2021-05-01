@@ -13,7 +13,7 @@ jobs:
           command: pip install -r requirements.txt
       - run:
           command: |
-            pipenv run python manage.py test
+            pipenv run python run.pyw test
       - store_test_results:
           path: test-results
       - store_artifacts:
