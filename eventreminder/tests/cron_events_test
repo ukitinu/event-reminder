@@ -4,7 +4,7 @@
 #the one below is comprised of spaces only
 
 * * * test; event
-* * 0,6 weekend; event
+* * 6,7 weekend; event
 30 2 * impossible; event
-* * 7 bad; event #this has a typo
+* * 0 bad; event #this has a typo
 */1 * * commented; event #short comment here

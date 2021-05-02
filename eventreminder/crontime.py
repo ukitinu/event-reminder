@@ -7,8 +7,8 @@ import re
 class CronTime:
     __DAY_REGEX = '(3[01]|[12][0-9]|[1-9])'
     __MONTH_REGEX = '(1[0-2]|[1-9])'
-    __WEEKDAY_REGEX = '[0-6]'
-    __RANGES = {'day': list(range(1, 32)), 'month': list(range(1, 13)), 'weekday': list(range(0, 7))}
+    __WEEKDAY_REGEX = '[1-7]'
+    __RANGES = {'day': list(range(1, 32)), 'month': list(range(1, 13)), 'weekday': list(range(1, 8))}
 
     def __init__(self, day: str, month: str, weekday: str):
         self.day = day
@@ -30,6 +30,7 @@ class CronTime:
         return days and months and weekdays
 
     def is_time(self, day: int, month: int, weekday: int) -> bool:
+        """`weekday` assumes ISO 8601 (i.e. 1 is Monday, 2 is Tuesday, ..., 7 is Sunday)."""
         is_day = day in self.get_field_nums('day')
         is_month = month in self.get_field_nums('month')
         is_weekday = weekday in self.get_field_nums('weekday')

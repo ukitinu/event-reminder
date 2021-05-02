@@ -24,7 +24,7 @@ class MyTestCase(unittest.TestCase):
         self.assertTrue(Event('test', 'event') in events)
         self.assertTrue(Event('commented', 'event') in events)
 
-        events = reader.read_lines(TEST_FILE, day, month, 0).events
+        events = reader.read_lines(TEST_FILE, day, month, 7).events
         self.assertTrue(len(events) >= 3)
         self.assertTrue(Event('weekend', 'event') in events)
 

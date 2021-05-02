@@ -45,7 +45,7 @@ if __name__ == '__main__':
         do_log_day = get_log_opt(cfg)
 
         today = date.today()
-        data = reader.read_lines(event_path, today.day, today.month, today.weekday())
+        data = reader.read_lines(event_path, today.day, today.month, today.isoweekday())
 
         if do_log_day:
             LOG.info('%s: %d events found', today, len(data.events))
@@ -54,7 +54,7 @@ if __name__ == '__main__':
             LOG.warning('Bad lines: %s', data.errors)
 
         if data.events:
-            renderer.open_window(f'{today.day} {today.month}', data.events)
+            renderer.open_window(f'{today : %Y-%m-%d}', data.events)
 
     except KeyError as ex:
         LOG.fatal("ini file: %s value not found", ex)

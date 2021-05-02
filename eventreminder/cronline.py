@@ -21,6 +21,7 @@ class CronLine:
         return self.cron == other.cron and self.event == other.event
 
     def is_today(self, day: int, month: int, weekday: int) -> bool:
+        """`weekday` assumes ISO 8601 (i.e. 1 is Monday, 2 is Tuesday, ..., 7 is Sunday)."""
         return self.cron.is_time(day, month, weekday)
 
     def to_text(self) -> str:

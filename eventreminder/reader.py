@@ -22,6 +22,7 @@ class DateData:
 def read_lines(file_path: str, day: int, month: int, weekday: int) -> DateData:
     """
     Reads the input file line by line, collecting the events matching the given date and the errors found in the file.
+    `weekday` assumes ISO 8601 (i.e. 1 is Monday, 2 is Tuesday, ..., 7 is Sunday).
     """
     events: Set[Event] = set()
     errors: Set[int] = set()
