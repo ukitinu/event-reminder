@@ -38,7 +38,7 @@ def get_log_opt(config: configparser.ConfigParser) -> bool:
     return bool(config['EVENT-REMINDER']['log-day'] == '1')
 
 
-if __name__ == '__main__':
+def main():
     try:
         cfg = read_conf()
         event_path = get_event_path(cfg)
@@ -60,3 +60,7 @@ if __name__ == '__main__':
         LOG.fatal("ini file: %s value not found", ex)
     except Exception as ex:
         LOG.error(ex)
+
+
+if __name__ == '__main__':
+    main()
