@@ -30,7 +30,7 @@ def read_lines(file_path: str, day: int, month: int, weekday: int) -> DateData:
     if os.path.exists(file_path):
         if os.path.islink(file_path):
             file_path = os.readlink(file_path)
-        with open(file_path, 'r') as file:
+        with open(file_path, 'r', encoding='utf-8') as file:
             line_num = 0
             for line in file:
                 line_num += 1
